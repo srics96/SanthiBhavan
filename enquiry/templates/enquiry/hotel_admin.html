@@ -1,0 +1,128 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+</head>
+<body ng-app="HotelAdminApp" ng-controller="hotelAdminCtrl" ng-cloak>
+  <h2 align="center"> Hotel Santhi Bhavan - Admin Console</h2>
+  <form action="" method="POST"> 
+    <md-content layout-padding>
+      <div layout="column">
+          <div layout-gt-sm="row">
+            <md-datepicker ng-model="startDate" md-placeholder="Select date" md-min-date="minDate" flex-gt-sm>
+            </md-datepicker>
+            <md-datepicker ng-model="EndDate" md-placeholder="Select date" md-min-date="minDate" flex-gt-sm>
+            </md-datepicker>
+            <select ng-model="selectedRoomType" ng-blur="createDateInstance()" ng-options="roomType as roomType.name for roomType in roomTypes" flex-gt-sm>
+            </select>
+          </div>
+          <div layout-gt-sm="row">
+              <md-slider-container ng-show="selectedRoomType && startDate" flex-gt-sm>
+                <md-slider min="1" max="9"  aria-label="blue" id="room-slider" ng-model="selectedRoomTypeAvailability" ng-blur="updateAvailability()"></md-slider>
+                <md-input-container>
+                  <input type="number" min="0" max="32" aria-label="blue" ng-model="selectedRoomTypeAvailability" aria-controls="room-slider" ng-blur="updateAvailability()">
+                </md-input-container>
+              </md-slider-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-slider-container ng-show="selectedRoomType && startDate" flex-gt-sm>
+                <md-slider min="0" max="75"  aria-label="blue" id="room-slider" ng-model="selectedRoomTypeDiscount" ng-blur="updateDiscount()"></md-slider>
+              <md-input-container>
+                <input type="number" min="0" max="75" aria-label="blue" ng-model="selectedRoomTypeDiscount" aria-controls="room-slider" ng-blur="updateDiscount()">
+              </md-input-container>
+            </md-slider-container>
+          </div>
+          <div layout="row">
+            <md-button ng-click="submitData()" flex="45">
+              Update
+            </md-button>
+          </div>
+        </div>
+    </md-content>
+  </form>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+  <!-- load angular-moment -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+  <script type="text/javascript">    
+    
+    adminApp = angular.module('HotelAdminApp', ['ngMaterial', 'ngMessages', 'angularMoment'])
+    adminApp.config(['$httpProvider', function($httpProvider) {
+      $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+      $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    }]);
+    adminApp.service('adminService', function($http) {
+      var urlEndPoint = "/admin";
+      this.submitData = function(data) {
+        return $http({
+          method: 'POST', 
+          url: urlEndPoint + '/update/',
+          data: data,
+        });
+      };
+    });
+    
+    adminApp.controller('hotelAdminCtrl', function($scope, $mdDialog, adminService) {
+      $scope.transactionMode = 
+      $scope.startDate = new Date();
+      $scope.minDate = new Date(
+        $scope.startDate.getFullYear(),
+        $scope.startDate.getMonth(),
+        $scope.startDate.getDate()
+      );
+      $scope.roomTypes = [
+        {name : 'Premium Single', rent : 1300},
+        {name : 'Premium Double', rent : 1600},
+        {name : 'Deluxe Double', rent : 1800}
+      ];
+      
+      $scope.selectedRoomType = $scope.roomTypes[0];
+
+      $scope.createDateInstance = function() {
+        if ($scope.selectedRoomType) {
+          $scope.selectedRoomType[$scope.startDate] = {'availableRooms' : 9};
+          $scope.selectedRoomTypeDiscount= $scope.selectedRoomType[$scope.startDate]['discount']
+          $scope.selectedRoomTypeAvailability = $scope.selectedRoomType[$scope.startDate]['availableRooms']
+        }
+      }
+
+      $scope.submitData = function() {
+        $scope.data = [];
+        var formatted_date = moment($scope.startDate).format('YYYY-MM-DD');
+        console.log(formatted_date);
+        $scope.data[formatted_date] = $scope.selectedRoomType[$scope.startDate]
+        data = {
+          "date": formatted_date,
+          "name": $scope.selectedRoomType['name'],
+          "availability_and_discount" : $scope.selectedRoomType[$scope.startDate]
+        }
+        var submitResponse = adminService.submitData(data);
+        submitResponse.then(function(response) {
+          if (response.status == 200) {
+            console.log("Sucessful");
+          } 
+        }, function(error) {
+            console.log("Error");
+        }); 
+      }
+
+      $scope.updateAvailability = function() {
+        $scope.selectedRoomType[$scope.startDate]['availableRooms'] = $scope.selectedRoomTypeAvailability;
+        console.log($scope.selectedRoomType[$scope.startDate]['availableRooms']);
+      }
+
+      $scope.updateDiscount = function() {
+        $scope.selectedRoomType[$scope.startDate]['discount'] = $scope.selectedRoomTypeDiscount;
+        console.log($scope.selectedRoomType[$scope.startDate]['discount']);
+      }
+      
+    });
+  </script>
+</body>
+</html>

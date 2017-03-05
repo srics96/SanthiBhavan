@@ -1,0 +1,804 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/**********************************Code for changing default bootstrap breakpoint**********/
+/*
+@media (max-width: 990px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+
+/*To remove bug caused due to this
+.navbar-collapse.collapse.in{
+    display: block!important;
+
+}
+*/
+
+@media (max-width: 1010px) {
+  .navbar-header {
+      float: none;
+  }
+  .navbar-left,.navbar-right {
+      float: none !important;
+  }
+  .navbar-toggle {
+      display: block;
+  }
+  .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-fixed-top {
+      top: 0;
+      border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+      display: none!important;
+  }
+  .navbar-nav {
+      float: none!important;
+      margin-top: 7.5px;
+  }
+  .navbar-nav>li {
+      float: none;
+  }
+  .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .collapse.in{
+      display:block !important;
+  }
+
+}
+/******************End Code for changing navbar breakpoint********************************/
+
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+body{
+    padding-top: 80px;  /*To account for fixed navbar*/
+    font-family: 'Montserrat' , sans-serif;
+    background-color: #fefefe;/*#3f3f3f;*/
+    color:#000;/*#fefefe;*/
+}
+
+/***************************Navbar Styling***********************/
+.navbar{
+    height : 80px;  /*Increasing Default Height*/
+    background-color: #1c1f24;
+}
+.navbar-header  {
+    height:80px;  /*To remove height issues in collapsed navbar*/
+}
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  padding: 10px 20px 10px 20px;
+  width:100px;
+  height:80px;
+  display: inline-block;
+}
+.tagline>img {
+    width:300px;
+    height: 80px;
+    display:inline-block;
+    /*Tagline size different for small devices,Scroll down to see*/
+}
+.navbar-collapse{
+    background-color: #1c1f24; /*Backgroud Color for links dropdown*/
+}
+.nav>li>a {
+    margin-top: 15px; /*To aligh links for incresed height*/
+    margin-right: 2px;
+                                        /*Look at media queries for collapsed link properties*/
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+    background-color: #fefefe;
+    color:#000000;
+    border-radius: 10px;
+}
+
+.navbar-toggle {
+    margin: 20px; /*To align for increased height*/
+}
+.navbar-toggle,.navbar-toggle:hover,.navbar-toggle:focus{
+    background-color:#1c1f24 !important;  /*To remove default navbar styling*/
+    color:#fefefe !important;
+    border:0px !important;   
+}
+.icon-bar{
+    background-color:#fefefe!important; /*To remove default navbar styling*/
+}
+
+#booknow{
+background-color: #c03221;
+color:#ffffff;
+}
+
+#booknow:hover{
+    box-shadow: 0 1px 5px 1px #cccccc;
+}
+#brandtitle{
+    font-size: 35px;
+    color: white;
+    font-family: 'Acme' , sans-serif;
+    position: relative;
+}
+#tagline{
+    font-size: 15px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    top:50px;
+    left:140px;
+}
+/******************Navbar styling over*************/
+
+/******Homepage Styling********/
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+.carousel-caption {
+    top: 200px;
+    bottom: auto;
+}
+.carousel-caption>h3{
+    font-size: 50px;
+}
+
+#hometext {
+    font-size: 1.4em;
+    color:#000000;
+    margin-top:25px;
+    margin-bottom:25px;
+    text-align: center;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.facilities {
+    font-size: 1.45em;
+    margin-top:20px;
+    font-variant: small-caps; 
+}
+
+#room-tile-1, #room-tile-2, #room-tile-3 {
+  height: 250px;
+  width: 100%;
+  margin-bottom: 15px;
+  position: relative;
+  border: 0px solid #c03221;
+  overflow: hidden;
+  margin-top: 25px;
+}
+#room-tile-1:hover, #room-tile-2:hover,  #room-tile-3:hover   {
+  box-shadow: 0 1px 5px 1px #101010;
+}
+#room-tile-1 {
+  background: url('../img/room1.jpg') no-repeat;
+  background-position: 46%60%;
+}
+#room-tile-2 {
+  background: url('../img/room2.jpg') no-repeat;
+  background-position: 30%80%;
+}
+
+#room-tile-3{
+  background: url('../img/room3.jpg') no-repeat;
+  background-position: 80%65%;
+}
+
+#room-tile-1 span, #room-tile-2 span, #room-tile-3 span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 1.6em;
+  text-transform: uppercase;
+  background-color: #c03221;
+  color: #fff;
+  opacity: .8;
+}
+
+.booknowbutton{
+    background-color: #c03221;
+    color:#fff;
+    width: 160px;
+    border:0px; 
+    margin:15px;
+    font-size:20px;
+}
+
+.booknowbutton:hover{
+ box-shadow: 0 1px 5px 1px #101010;
+}
+
+#feedbackbox {
+    font-size: 20px;
+    color:#fefefe;
+    margin-top:25px;
+    margin-bottom:25px;
+    padding: 10px;
+    background-color: #1c1f24;
+    border-radius: 10px;
+    font-style: italic;
+    font-family:  'Gochi Hand' , cursive;
+}
+
+
+/******Homepage Styling******/
+
+/****Footer Styling****/
+.panel-footer {
+  margin-top: 30px;
+  padding-top: 35px;
+  padding-bottom: 30px;
+  background-color: #1c1f24;
+  border-top: 0;
+  color:#fefefe;
+}
+.panel-footer div.row {
+  margin-bottom: 35px;
+}
+
+ #address {
+  line-height: 2;
+}
+ #address > span {
+  font-size: 1.3em;
+}
+#address p {
+  color: #ccc;
+  font-size: .8em;
+  line-height: 1.8;
+}
+.social{
+    font-size: 2em;
+    margin-top: 15px;
+}
+/*******Footer Styling Ends*********/
+
+
+/***aboutus why us**/
+ .about{
+    text-align: justify;
+ }
+ #whyus{
+    margin-top: 50px;
+ }
+
+ #story,#vision,#mission{
+    margin-top: 80px;
+ }
+
+ #story>span,#vision>span,#mission>span,#whyus>span{
+    font-size: 1.3em;
+ }
+
+#bglogo{
+    opacity: 0.1;
+    position: fixed;
+    top:50%;
+    left: 50%;
+    z-index: -50;
+    transform: translate(-50%,-50%);
+}
+
+  #whyusmap{
+                width:500px;
+                height: 500px;
+  }
+/****/
+
+.formbox{
+    border:2px solid #1c1f24;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top:20px;
+    margin-bottom: 30px;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('Desktop first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+ 
+@media only screen and (min-width: 768px) and (max-width: 1010px) {
+           .nav>li>a{
+                margin-top: 0px; 
+                width:inherit;
+                text-align:center;
+                margin-right:0px; 
+            }
+
+            .tagline>img{
+                width:300px;
+                height: 80px;
+                /*Tagline size different for large devices,Scroll up to see*/
+            }
+
+            .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+                background-color:transparent; /*To remove collpased dropdown width bug*/
+                color:#fefefe;
+            }
+
+            .navbar-collapse {
+               padding-right: -15px;
+               padding-left: -15px;
+            }
+
+            .carousel-inner > .item > img,
+              .carousel-inner > .item > a > img {
+                  width: 100%;
+                  margin: auto;
+              }
+            
+            .carousel-caption {
+                top: 150px;
+                bottom: auto;
+            }
+            .carousel-caption>h3{
+                font-size: 45px;
+            }
+
+            #hometext{
+                font-size: 1.3em;
+            }
+
+
+            #story,#vision,#mission{
+                margin-top: 80px;
+             }
+
+             #story>span,#vision>span,#mission>span,#whyus>span{
+                font-size: 1.2em;
+             }
+        
+}
+
+@media only screen and (max-width: 768px) {
+            .nav>li>a{
+                margin-top: 0px; /*To remove applied margin in desktops*/
+                text-align:center;
+                margin-right: 0px;
+            }
+
+            .tagline>img{
+                width:250px;
+                height: 80px;
+                /*Tagline size different for large devices,Scroll up to see*/
+            }
+
+             .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+                background-color:transparent; /*To remove collpased dropdown width bug*/
+                color: #fefefe;
+            }
+
+            .carousel-inner > .item > img,
+            .carousel-inner > .item > a > img {
+              width: 100%;
+              margin: auto;
+          }
+
+            .carousel-caption {
+                top: 75px;
+                bottom: auto;
+            }
+            .carousel-caption>h3{
+                font-size: 40px;
+            }
+
+             #hometext{
+                font-size: 1.2em;
+            }
+
+            #story,#vision,#mission{
+                margin-top: 50px;
+             }
+
+             #story>span,#vision>span,#mission>span,#whyus>span{
+                font-size: 1em;
+             }
+
+             #whyusmap{
+                width:300px;
+                height: 300px;
+             }
+        
+}
+
+@media only screen and (max-width: 479px) {
+            .nav>li>a{
+                margin-top: 0px; /*To remove applied margin in desktops*/
+                text-align:center;
+            }
+
+            .tagline>img{
+                width:140px;
+                height: 80px;
+                /*Tagline size different for large devices,Scroll up to see*/
+            }
+
+            .carousel-inner > .item > img,
+              .carousel-inner > .item > a > img {
+                  width: 100%;
+                  margin: auto;
+              }
+
+            .carousel-caption {
+                top: 50px;
+                bottom: auto;
+            }
+            .carousel-caption>h3{
+                font-size: 24px;
+            }
+
+            .facilities{
+                font-size:1.37em;
+            }
+             #hometext{
+                font-size: 1.1em;
+            }
+            #brandtitle{
+                font-size: 1.30em;
+                color: white;
+                font-family: 'Acme' , sans-serif;
+                position: relative;
+            }
+            #tagline{
+                font-size: 10px;
+                color: white;
+                font-family: 'Montserrat', sans-serif;
+                position: absolute;
+                top:50px;
+                left:130px;
+            }
+        
+}
+
+@media only screen and (max-width: 380px) {
+ #brandtitle{
+                font-size: 1em;
+                color: white;
+                font-family: 'Acme' , sans-serif;
+                position: relative;
+            }
+            #tagline{
+                font-size: 8px;
+                color: white;
+                font-family: 'Montserrat', sans-serif;
+                position: absolute;
+                top:50px;
+                left:125px;
+            }
+}
+
+@media only screen and (max-width: 320px) {
+            .nav>li>a{
+                margin-top: 0px; /*To remove applied margin in desktops*/
+                text-align:center;
+            }
+
+            .tagline>img{
+                width:110px;
+                height: 80px;
+                /*Tagline size different for large devices,Scroll up to see*/
+            }
+
+            .carousel-inner > .item > img,
+              .carousel-inner > .item > a > img {
+                  width: 100%;
+                  margin: auto;
+              }
+
+            .carousel-caption {
+                top: 50px;
+                bottom: auto;
+            }
+            .carousel-caption>h3{
+                font-size: 24px;
+            }
+             #hometext{
+                font-size: 1.1em;
+            }
+}
+
+
+
+
+
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after,
+    *:first-letter,
+    *:first-line {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

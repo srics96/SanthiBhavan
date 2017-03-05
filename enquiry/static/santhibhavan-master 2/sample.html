@@ -1,0 +1,244 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+</head>
+<body ng-app="BlankApp" ng-controller="reservationCtrl" ng-cloak>
+  <md-content layout-padding>
+    <legend> Room Reservation Form </legend>
+    <div>
+      <form name="reservationForm">
+        <div layout="column">
+          <md-input-container class="md-block">
+            <label> Name </label>
+            <md-icon  md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+            <input ng-model="guestName">
+          </md-input-container>
+          <md-input-container class="md-block">
+              <label> Nationality </label>
+              <md-select ng-model="selectedCountry">
+                <md-option ng-value="country" ng-repeat="country in countries">{{country.name}}</option>
+              </md-select>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label> Address </label>
+            <input ng-model="address">
+          </md-input-container>
+
+          <md-input-container md-no-float class="md-block">
+            <input ng-model="address2" placeholder="Address 2">
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row" ng-show="selectedCountry.name === 'India'">
+           <md-input-container class="md-block" flex-gt-sm>
+            <label> State </label>
+            <md-select ng-model="selectedState">
+             <md-option ng-repeat="state in states" value="{{state}}">
+              {{state}}
+             </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> City </label>
+            <input ng-model="city">
+          </md-input-container>
+          
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Postal Code </label>
+            <input name="postalCode" ng-model="postalCode" placeholder="600011" required ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
+            <div ng-messages="reservationForm.postalCode.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message"> You must supply a Postal Code </div>
+              <div ng-message="pattern" class="my-message"> That doesn't look like a valid postal code. </div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" ng-show="selectedCountry" flex=10>
+            <label> {{selectedCountry.code}} </label>
+          </md-input-container>
+          <md-input-container md-no-float class="md-block" flex-gt-sm>
+              <input ng-model="phoneNumber"  placeholder="Please enter the phone number" required ng-pattern="/^[0-9]{0,12}$/">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+              <label>Email</label>
+              <input ng-model="email" type="email">
+          </md-input-container>
+          </div>
+        </div>
+        <div layout-gt-sm="row">
+          <md-datepicker ng-model="checkInDate" md-placeholder="Enter Check-In date"
+             md-min-date="checkInMinDate" md-max-date="checkInMaxDate" flex-gt-sm ng-blur="updateCheckInTime()"></md-datepicker>
+          <md-input-container ng-model="checkInTime" flex-gt-sm  ng-show="hasUpdatedCheckInTime">
+              <input type="datetime-local" ng-model="checkInTime" placeholder="Enter Check-In Time"/>
+          </md-input-container>
+          <md-datepicker ng-model="checkOutDate" md-placeholder="Enter Check-Out date"
+             md-min-date="checkOutMinDate" flex-gt-sm ng-init="updateCheckOutDate()" ng-blur="updateCheckOutTime()"></md-datepicker>
+          <md-input-container flex-gt-sm ng-show="hasUpdatedCheckOutTime">
+            <input type="datetime-local" ng-model="checkOutTime" placeholder="Enter Check-out Time">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <span> Number of Rooms </span>
+          <br>
+          <md-slider-container flex-gt-sm>
+            <md-slider flex min="0" max="5" ng-model="numberOfRooms" aria-label="blue" id="room-slider">
+            </md-slider>
+            <md-input-container>
+              <input flex type="number" min="0" ng-model="numberOfRooms" aria-label="blue" aria-controls="room-slider" ng-keyup="checkForSufficiencyOrExtraCharge()">
+            </md-input-container>
+          </md-slider-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Number of Adults </label>
+            <input ng-model="numberOfAdults" required type ="number" step="any" min="1" ng-keyup="addNumberOfGuests()">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label> Number of Children </label>
+            <input ng-model="numberOfChildren" required type ="number" step="any" min="0" ng-keyup="addNumberOfGuests()">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm ng-show = "numberOfAdults || numberOfChildren">
+            <label> Number of Guests </label>
+            <input ng-model="numberOfGuests" required type ="number" step="any"  ng-disabled="numberOfGuests" >
+          </md-input-container>
+        </div>
+      </form>
+    </div>
+  </md-content>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <script type="text/javascript">    
+    angular
+    .module('BlankApp', ['ngMaterial', 'ngMessages'])
+    .controller('reservationCtrl', function($scope, $mdDialog) {
+      $scope.guestName="Sricharan";
+      $scope.numberOfChildren = 0;
+      $scope.numberOfAdults = 1;
+      $scope.disableCountryCode= true;
+      $scope.isForeigner=false;
+      $scope.countries = [
+        {name : 'India', code: '+91'},
+        {name : 'Indi', code: '+95'},
+        {name: 'Afghanistan', code: '+93'},
+        {name: 'Afghanista', code: '+94'}
+      ];
+      $scope.states = ['Tamilnadu', 'Kerala', 'Andhra Pradesh', 'Karnataka'];
+      $scope.numberOfRooms = 1;
+      $scope.checkInTime = new Date();
+      $scope.checkInDate = new Date();
+      $scope.checkOutDate = new Date();
+      $scope.checkInMinDate = new Date(
+        $scope.checkInDate.getFullYear(),
+        $scope.checkInDate.getMonth(),
+        $scope.checkInDate.getDate()
+      );
+      $scope.checkInMaxDate = new Date(
+        $scope.checkInDate.getFullYear(),
+        $scope.checkInDate.getMonth() + 2,
+        $scope.checkInDate.getDate()
+      );
+      $scope.checkOutMinDate = new Date(
+        $scope.checkOutDate.getFullYear(),
+        $scope.checkOutDate.getMonth(),
+        $scope.checkOutDate.getDate()
+      );
+      $scope.addNumberOfGuests = function() {
+        $scope.numberOfGuests = $scope.numberOfAdults + $scope.numberOfChildren;
+        $scope.numberOfRooms = Math.floor($scope.numberOfGuests / 2);
+        console.log($scope.numberOfRooms);
+        $scope.checkForSufficiencyOrExtraCharge();
+      }
+
+      $scope.checkForSufficiencyOrExtraCharge = function() {
+        b = $scope.checkOutTime - $scope.checkInTime;
+        console.log(b);
+        if ($scope.numberOfRooms < 1) {
+          $scope.numberOfRooms = 0;
+        }
+        if ($scope.numberOfRooms < Math.floor($scope.numberOfGuests / 2)) {
+          $scope.showInsufficiencyAlert();
+        }
+        else if ( ($scope.numberOfGuests % 2) != 0 && ($scope.numberOfRooms == Math.floor($scope.numberOfGuests / 2)) ) {
+          console.log("Im here");
+          $scope.showExtraChargeConfirm();
+        }
+      }
+
+      $scope.showExtraChargeConfirm = function() {
+        var confirm = $mdDialog.confirm()
+          .title('Extra person Charges might have to be paid')
+          .textContent("Number of people per room is 2")
+          .ariaLabel('Extra charges')
+          .ok('Pay')
+          .cancel('Add sufficient number');
+
+        $mdDialog.show(confirm).then(function() {
+          $scope.extraPersonChargedOpted= true;
+        }, function() {
+              $scope.numberOfRooms = $scope.numberOfRooms + 1;
+        });
+      }
+
+      $scope.showInsufficiencyAlert = function() {
+        $mdDialog.show(
+          $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Insufficient number Of rooms')
+          .textContent('The number of rooms selected is insufficient')
+          .ariaLabel('alertforinsufficiency')
+          .ok('Got it!')
+        );
+      }
+
+      $scope.updateCheckInTime = function() {
+        $scope.checkInTime = new Date(
+          $scope.checkInDate.getFullYear(),
+          $scope.checkInDate.getMonth(),
+          $scope.checkInDate.getDate(),
+          $scope.checkInTime.getHours(),
+          $scope.checkInTime.getMinutes()
+        );
+        $scope.hasUpdatedCheckInTime = true;
+        $scope.updateCheckOutDate();
+      }
+
+      $scope.updateCheckOutDate = function() {
+        $scope.checkOutDate = new Date(
+          $scope.checkInDate.getFullYear(),
+          $scope.checkInDate.getMonth(),
+          $scope.checkInDate.getDate() + 1
+        );
+      }
+
+      $scope.updateCheckOutTime = function() {
+        $scope.checkOutTime = new Date(
+          $scope.checkOutDate.getFullYear(),
+          $scope.checkOutDate.getMonth(),
+          $scope.checkOutDate.getDate(),
+          $scope.checkOutDate.getHours(),
+          $scope.checkOutDate.getMinutes()
+        );
+        $scope.hasUpdatedCheckOutTime = true;
+      }
+
+      $scope.calculateTimeInterval = function() {
+        var intervalInmils = $scope.checkOutTime - $scope.checkInTime;
+        $scope.numberOfHours = (intervalInmils / (1000 * 60 * 60));
+        $scope.numberOfDays = Math.ceil($scope.numberOfHours / 24);
+      }
+
+    });
+  </script>
+  
+</body>
+</html>
+

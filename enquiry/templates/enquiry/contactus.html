@@ -1,0 +1,355 @@
+<!doctype html>
+<html class="no-js" lang="" ng-app="enquiryApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Santhi Bhavan | Business Class Hotel</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Mobile Top Chrome Bar Color-->
+    <meta name="theme-color" content="#1c1f24" />
+    {% load static %}
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://use.fontawesome.com/8fd1dc0516.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Just+Another+Hand|Acme" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% load static %}
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+</head>
+
+<body ng-controller="enquiryCtrl">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Add your site or application content here -->
+    <!--Navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    {% load static %}
+                    <img src="{% static 'img/logowhite.svg' %}" alt="Santhi Bhavan">
+                    <span id="brandtitle">SANTHI BHAVAN</span>
+                    <span id="tagline">BUSINESS CLASS HOTEL</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a href="index.html">HOME</a></li>
+                    <li ><a href="aboutus.html">ABOUT US</a></li>
+                    <li ><a href="whyus.html">WHY US</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li class="active"><a href="contactus.html">CONTACT US</a></li>
+                    <li><a href="booknow.html" id="booknow">BOOK NOW</a></li>
+                </ul>
+            </div>
+    </nav>
+   <div  id="bglogo">
+    {% load static %}
+    <img src="{% static 'img/logo.svg' %}" width="100" height="100">
+   </div>
+    
+
+<div class="container">
+  <h2 class="text-center" style="font-variant: small-caps;margin-top: 50px;">Contact Us</h2>
+  <form class="form-horizontal formbox" action="contactus/" method="POST">
+  {% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">Name* : </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email* : </label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="phone">Phone Number : </label>
+      <div class="col-sm-10">
+        <input type="tel" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="enquiry">Message* : </label>
+      <div class="col-sm-10">
+      <textarea class="form-control " rows="5"  id="enquiry" name="message" required></textarea>
+      </div>
+      <center>
+      <span class="help-block">* - Required Fields.</span>
+      </center>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-12">
+      <center>
+        <button type="submit" class="booknowbutton">Submit</button>
+      </center>
+      </div>
+    </div>
+  </form>
+</div>
+    
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12 col-md-6">
+       <center>
+           <h3><i class="fa fa-map-marker"></i> Address</h3>
+           <p>
+          (New No.305) No.138, Wall Tax Road, <br> 
+          Park Town, Chennai - 600003.
+          </p>
+          <h3><i class="fa fa-phone"></i> Phone Number</h3>
+           <p>044 - 2535 5007</p>
+           <p>044 - 2535 2128</p>
+           <p>044 - 2535 0054</p>
+           <p>044 - 4218 9896</p>
+           <h3><i class="fa fa-envelope"></i> Email Id</h3>
+           <p>santhibhavan2001@gmail.com</p>
+        </center>
+      </div>
+
+    <div class="col-xs-12 col-md-6">
+    <center>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15545.041819160691!2d80.2764643!3d13.0826728!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x67fc233acd82cef5!2sShanti+Bhavan!5e0!3m2!1sen!2sin!4v1486391719487" width="100%" height="350" frameborder="0" style="border:0;border-radius: 10px;" allowfullscreen></iframe>
+    </center>
+    </div> 
+  </div>  
+</div>
+
+
+<div class="modal fade" id="tandc" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">Terms &amp; Conditions</h3>
+        </div>
+        <div class="modal-body">
+          <ol>
+            <li> The website design and logo belongs to the company and there is a strict restriction on editing or usage of the designs.</li>
+            <li> The content available on the website is copyrighted and cannot be altered unless stated by the management.</li>
+            <li> The discounts for the rooms will be updated at 12 noon based on its availability. </li>
+            <li> For further terms and conditions, kindly approach the manager desk at the hotel to know about it.</li>
+            <li> Pictures available on this site is not available for reproduction or edition without the consent of the management.</li>
+            <li> Any extra person beyond the capacity of the room should oblige to the additional extra person charges, which can be paid during check-out.</li> 
+            <li> All the payable services such as room service, house keeping etc which is available at the hotel need to be settled during check out. </li>
+          </ol>
+          <br>
+          <h4 class="text-center"><b>Intellectual Property</b></h4>
+          <p>
+                Anything and everything that you see on the website is an intellectual property of Santhi Bhavan and cannot be used or altered without any proper consent.  www.hotelsanthibhavan.in and      
+www.hotelsanthibhavan.com
+belongs to Santhi Bhavan.           
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="booknowbutton" data-dismiss="modal">Close</button>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+     <!-- Modal -->
+  <div class="modal fade" id="policy" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title text-center"><b>Our  Policies</b></h2>
+        </div>
+        <div class="modal-body">
+          <h3 class="text-center"><b>Privacy Policy</b></h3>
+          <h4><b>Information we collect</b></h4>
+          <p>
+            Information you give us. For example, while booking you are asked to complete a form. When you do, we’ll ask for personal information, like your name, email address, telephone number etc to store with your account. 
+          </p>
+          <h4><b>How we use information we collect</b></h4>
+          <p>
+            The information collected is used to make sure that the services provided are improved and updated for your stay with us. It is also to understand the needs the customers prior to their stay. Also, for e-marketing purposes, where in, we make sure that you get the right information at the right time through us.
+          </p>
+          <h4><b>Information we share</b></h4>
+          <ul>
+          <li><h5><b>For external processing</b></h5></li>
+          <p>
+            We provide personal information to our affiliates or other trusted businesses or persons to process it for us, based on our instructions and in compliance with our Privacy Policy and any other appropriate confidentiality and security measures.
+          </p>
+          <li><h5><b>For legal reasons</b></h5></li>
+          <p>
+            We will share personal information with companies, organizations or individuals outside of Santhi Bhavan if we have a good-faith belief that access, use, preservation or disclosure of the information is reasonably necessary to:
+            <ul>
+                    <li> meet any applicable law, regulation, legal process or enforceable governmental request.</li>
+                    <li>enforce applicable Terms of Service, including investigation of potential violations.</li>
+                    <li>detect, prevent, or otherwise address fraud, security or technical issues.</li>
+                    <li>protect against harm to the rights, property or safety of Shanti Bhavan, our customers or the public as required or permitted by law.</li>
+            </ul>
+                  We may share non-personally identifiable information publicly and with our partners – like publishers, advertisers or connected sites. For example, we may share information publicly to show trends about the general use of our services
+          </p>
+          </ul>
+          <br>
+          <h3 class="text-center"><b>Return, Refund and Cancellation Policy</b></h3>
+            <p>
+                  For Return, Refund and Cancellation, kindly contact the hotel front desk to initiate the process after providing with a valid reason for return, refund and cancellation. On approval, the money will reverted back within 7 working days. 
+Kindly, make a note that cancellation cannot not be processed online. Refund on cancellation will be reverted back to your account, which was used to at the time of booking within 7 working days.Cancellation will be processed or accepted 48 hours prior to your stay date and it has to be done via phone.
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="booknowbutton" data-dismiss="modal">Close</button>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+<div class="modal fade" id="disc" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">Disclaimer</h3>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>The management is not responsible for any additional services apart from the, the basic services mentioned at the front desk and on the website.</li>
+            <li> The management does not hold any responsibility towards the damage or theft of belongings and other valuable items which are unattended.</li>
+            <li> We can anytime say no to your requests or bookings, if we find that there has been a violation of our company policies  and conditions.</li>
+            <li> Online booking is through the payment gateway and there is no option of cash on staying unless mentioned in our policies or conditions.</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="booknowbutton" data-dismiss="modal">Close</button>
+        </div>
+      </div>  
+    </div>
+  </div>  
+
+      <!-- Modal -->
+  <div class="modal fade" id="help" role="dialog">
+    <div class="modal-dialog">   
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">Help</h3>
+        </div>
+        <div class="modal-body">
+            <h4 class="text-center">Quick guide on how to book a room</h4>
+            <p>
+              Go to any of the book now options and enter the form details. As per the information entered, the room charges including the taxes will be provided by our system. Click book now and you will be transferred to our secure payment gateway where you can pay through various means such as CC, DC, internet banking, money wallet etc. On successful transaction, your room booking confirmation will be sent to your provided email address. 
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="booknowbutton" data-dismiss="modal">Close</button>
+        </div>
+      </div>  
+    </div>
+    </div>
+
+ <footer class="panel-footer">
+    <div class="container">
+      <div class="row">
+        <section id="sitemap" class="col-sm-4">
+          <span><i class="fa fa-map"></i> Site Map : </span><br>
+         <span><a href="index.html">Home</a></span><br>
+          <span><a href="aboutus.html">About Us</a></span><br>
+          <span><a href="whyus.html">Why Us</a></span><br>
+          <span><a href="gallery.html">Gallery</a></span><br>
+          <span><a href="contactus.html">Contact Us</a></span><br>
+          <span><a href="booknow.html">Book Now</a></span>
+          <hr class="visible-xs">
+        </section>
+        <section id="address" class="col-sm-4">
+          <span><i class="fa fa-map-marker"></i> Address:</span><br>
+          (New No.305) No.138, Wall Tax Road, <br> 
+          Park Town, Chennai - 600003.
+          <hr class="visible-xs">
+        </section>
+        <section id="sociallinks" class="col-sm-2 ">
+            <span><i class="fa fa-rss"></i> Social Media : </span><br>
+            <i class="fa fa-facebook-square fa-lg social" aria-hidden="true"></i>
+            <i class="fa fa-twitter-square fa-lg social" aria-hidden="true"></i>
+            <i class="fa fa-google-plus-square fa-lg social" aria-hidden="true"></i>
+            <hr class="visible-xs">
+        </section>
+        <section id="webcompliance" class="col-sm-2">
+         <span><a data-toggle="modal"  data-target="#tandc" href="">Terms &amp; Conditions</a></span><br>
+          <span><a data-toggle="modal"  data-target="#policy" href="">Our Policies</a></span><br>
+          <span><a data-toggle="modal"  data-target="#disc" href="">Disclaimer</a></span><br>
+          <span><a data-toggle="modal"  data-target="#help" href="">Help</a></span><br>
+          <hr class="visible-xs">
+        </section>
+      </div>
+      <div class="text-center">&copy;  2017 Santhi Bhavan. All Rights Reserved.</div>
+       <div class="text-center">Website Handcrafted by U-Klickkit.</div>
+    </div>
+  </footer>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% load static %}
+    <script src="{% static 'js/plugins.js' %}"></script>
+    {% load static %}
+    <script src="{% static 'js/main.js' %"></script>
+    
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-91605859-1', 'auto');
+ ga('send', 'pageview');
+
+</script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script type="text/javascript">    
+    enquiryApp = angular.module('enquiryApp', ['ngMaterial', 'ngMessages'])
+    enquiryApp.constant('djangoConstants', {
+      didSendEmail: '{% if didSendEmail %}{{ didSendEmail }} {% endif %}'
+    });
+    enquiryApp.controller('enquiryCtrl', function($scope, $mdDialog, djangoConstants) {
+      $scope.showEmailSentAlert = function() {
+        $mdDialog.show(
+          $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('We have received your message!')
+          .textContent('We will contact you shortly')
+          .ariaLabel('sentEmailAlert')
+          .ok('Got it!')
+        );
+      }
+      if (djangoConstants.didSendEmail) {
+        console.log(djangoConstants.didSendEmail);
+        $scope.showEmailSentAlert();
+      }
+      else {
+        console.log('I didnt receive djangoConstants')
+      }
+    });
+    </script>
+
+</body>
+</html>
